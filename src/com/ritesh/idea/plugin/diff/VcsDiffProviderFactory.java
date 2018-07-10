@@ -28,7 +28,7 @@ import org.jetbrains.idea.svn.SvnVcs;
  */
 public class VcsDiffProviderFactory {
     public static IVcsDiffProvider getVcsDiffProvider(Project project, Configuration configuration) {
-        AbstractVcs vcsFor = ProjectLevelVcsManager.getInstance(project).getVcsFor(project.getProjectFile());
+        AbstractVcs vcsFor = ProjectLevelVcsManager.getInstance(project).getVcsFor(project.getBaseDir());
         if (configuration.useRbTools == Boolean.TRUE) {
             return new RbToolsDiffProvider(configuration.url, configuration.username, configuration.password,
                     configuration.rbtPath, vcsFor);

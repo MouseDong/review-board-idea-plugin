@@ -93,16 +93,16 @@ public class MultiValueAutoComplete {
             ApplicationManager.getApplication().executeOnPooledThread(new Runnable() {
                 @Override
                 public void run() {
-                    List<String> values = dataProvider.getValues(prefix);
-                    if(values!=null) {
-                        values.addAll(values);
+                    List<String> temp = dataProvider.getValues(prefix);
+                    if(temp!=null) {
+                        values.addAll(temp);
                     }
                     completed.setValue(true);
                 }
             });
 
             while (!completed.booleanValue()) {
-                ProgressManager.getInstance().checkCanceled();
+                ProgressManager.checkCanceled();
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {
